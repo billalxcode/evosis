@@ -13,7 +13,7 @@
                             <p class="mb-4">
                                 Ayo dukung perkembangan aplikasi ini dengan donasi.
                             </p>
-                            <a href="javascript:;" class="btn btn-sm btn-outline-primary">Donasi</a>
+                            <a href="https://trakteer.id/billalxcode" class="btn btn-sm btn-outline-primary">Trakteer</a>
                         </div>
                     </div>
                     <div class="col-sm-5 text-center text-sm-left">
@@ -31,7 +31,6 @@
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <!-- <img src="../assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" /> -->
                                     <i class='avatar-icon bx bx-user-plus'></i>
                                 </div>
                                 <div class="dropdown">
@@ -39,12 +38,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                        <a class="dropdown-item" href="javascript:void(0);">Lihat</a>
+                                        <a class="dropdown-item" href="<?= base_url("admin/siswa") ?>">Lihat</a>
                                     </div>
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Siswa</span>
-                            <h3 class="card-title mb-2">0</h3>
+                            <h3 class="card-title mb-2"><?= count($models['siswaModel']->findAll()) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -60,12 +59,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        <a class="dropdown-item" href="<?= base_url('admin/kelas') ?>">Lihat</a>
                                     </div>
                                 </div>
                             </div>
                             <span>Kelas</span>
-                            <h3 class="card-title text-nowrap mb-1">0</h3>
+                            <h3 class="card-title text-nowrap mb-1"><?= count($models['kelasModel']->findAll()) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -76,8 +75,9 @@
             <div class="card">
                 <div class="row row-bordered g-0">
                     <div class="col-md-12">
-                        <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
-                        <div id="totalRevenueChart" class="px-2"></div>
+                        <h5 class="card-header m-0 me-2 pb-3">Jumlah Suara</h5>
+                        <!-- <div id="totalRevenueChart" class="px-2"></div> -->
+                        <p class="text-center py-lg-5 fw-bold">Mohon bersabar, widget ini masih dalam pengembangan.</p>
                     </div>
                 </div>
             </div>
@@ -97,12 +97,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        <a class="dropdown-item" href="<?= base_url('admin/kandidat') ?>">Lihat</a>
                                     </div>
                                 </div>
                             </div>
                             <span class="d-block mb-1">Kandidat</span>
-                            <h3 class="card-title text-nowrap mb-2">0</h3>
+                            <h3 class="card-title text-nowrap mb-2"><?= count($models['kandidatModel']->findAll()) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -118,13 +118,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                        <a class="dropdown-item" href="<?= base_url('admin/suara') ?>">Lihat</a>
                                     </div>
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Suara</span>
-                            <h3 class="card-title mb-2">0</h3>
+                            <h3 class="card-title mb-2"><?= count($models['suaraModel']->findAll()) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -137,8 +136,7 @@
                                         <h5 class="text-nowrap mb-2">Grafik Suara</h5>
                                     </div>
                                     <div class="mt-sm-auto">
-                                        <small class="text-success text-nowrap fw-semibold"><i class="bx bx-chevron-up"></i> 0%</small>
-                                        <h3 class="mb-0">0</h3>
+                                        <h3 class="mb-0"><?= count($models['suaraModel']->findAll()) ?></h3>
                                     </div>
                                 </div>
                                 <div id="profileReportChart"></div>

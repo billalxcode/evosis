@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-1">
             <?php if (session()->getFlashdata('success')): ?>
-                <div class="alert alert-succes">
+                <div class="alert alert-success">
                     <?= session()->getFlashdata('success') ?>
                 </div>
             <?php endif ?>
@@ -19,7 +19,9 @@
                     <a href="<?= base_url('admin/siswa/create') ?>">
                         <button class="btn btn-primary"><i class='bx bx-user-plus'></i> Tambah Data</button>
                     </a>
-                    <button class="btn btn-primary" disabled><i class='bx bxs-file-import'></i> Import File</button>
+                    <a href="<?= base_url('admin/siswa/import') ?>">
+                        <button class="btn btn-primary"><i class='bx bxs-file-import'></i> Import File</button>
+                    </a>
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#trashModal"><i class="fa fa-trash"></i> Reset</button>
                 </div>
             </div>
@@ -123,7 +125,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="ro">
+                    <div class="row">
                         <div class="col-lg-12">
                             <div class="alert alert-warning">
                                 <span class="text-uppercase fw-bold">PERHATIAN: </span> Dengan ini anda setuju untuk menghapus data secara permanen. Apakah anda yakin?

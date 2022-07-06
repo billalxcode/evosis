@@ -8,6 +8,7 @@ class Admin extends BaseController
 {
     public function index()
     {
+        $this->loadModel();
         $this->context['title'] = "Dashboard E-VoSis";
         return $this->renderView('admin/dashboard');
     }

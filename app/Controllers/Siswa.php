@@ -89,4 +89,35 @@ class Siswa extends BaseController
         $this->session->setFlashdata('success', 'Berhasil mereset data, data tidak bisa dikembalikan karena sudah dihapus secara permanen.');
         return redirect()->to('admin/siswa');
     }
+
+    public function importFile() {
+        $this->context['title'] = "Import Siswa";
+
+        $this->renderView('admin/siswa/import');
+    }
+
+    public function process() {
+        $rules = [
+            'filetype' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Mohon pilih tipe file.'
+                ]
+            ],
+            'file' => [
+                'rules' => 'required|ext_in[file,csv,xls,xlsx,ods]',
+                'error' => [
+                    'required' => 'Mohon pilih file yang akan di import',
+                    'ext_in' => 'File tidak didukung'
+                ]
+            ]
+        ];
+
+        if ($this->validate($rules)) {
+            
+        } else {
+            $this->session->setFlashdata('errors', $this->validator->getErrors());
+            return redirect()->back();
+        }
+    }
 }

@@ -3,6 +3,15 @@
 <?= $this->section("content"); ?>
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-1">
+            <?php if (session()->getFlashdata('success')) : ?>
+                <div class="alert alert-success">
+                    <?= session()->getFlashdata('success') ?>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
             <div class="card">
                 <h4 class="card-header">Semua Aksi</h4>
@@ -20,6 +29,7 @@
                                 <button class="btn btn-primary"><i class='bx bx-plus'></i> Tambah Data</button>
                             </a>
                             <button class="btn btn-primary" disabled><i class='bx bxs-file-import'></i> Import File</button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#trashModal"><i class="fa fa-trash"></i> Reset</button>
                         </div>
                     </div>
                 </div>
@@ -254,6 +264,33 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="trashModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="<?= base_url('admin/kandidat/trash') ?>" method="post">
+                <?= csrf_field() ?>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="trashModalLabel">Reset Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-warning">
+                                <span class="text-uppercase fw-bold">PERHATIAN: </span> Dengan ini anda setuju untuk menghapus data secara permanen. Apakah anda yakin?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">RAGU</button>
+                    <button type="submit" class="btn btn-primary">YA</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/vendor/css/pages/page-auth.css') ?>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/fontawesome/css/all.min.css') ?>">
     <script src="<?= base_url('assets/vendor/js/helpers.js') ?>"></script>
     <script src="<?= base_url('assets/js/config.js') ?>"></script>
 </head>
@@ -32,22 +33,31 @@
     <script src="<?= base_url('assets/vendor/libs/popper/popper.js') ?>"></script>
     <script src="<?= base_url('assets/vendor/js/bootstrap.js') ?>"></script>
     <script src="<?= base_url('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') ?>"></script>
-
+    <script src="<?= base_url('assets/vendor/libs/fontawesome/js/all.min.js') ?>"></script>
     <script src="<?= base_url('assets/vendor/js/menu.js') ?>"></script>
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
     <script>
         window['BASE_URL'] = '<?= base_url() ?>'
-        
+
+        $(document).on("submit", "form", function(event) {
+            var buttons = $(this).find("button.btn")
+            buttons.prop("disabled", true)
+            buttons.html(
+                "<span><i class='fa fa-spinner fa-spin'></i> Loading...</span>"
+            )
+        })
+
         $(document).ready(function() {
             if ($(".alert").length >= 1) {
-                setTimeout(function () {
-                    $(".alert").slideUp(500, function () {
+                setTimeout(function() {
+                    $(".alert").slideUp(500, function() {
                         $(".alert").alert('close')
                     })
                 }, 3000)
             }
 
             if ($("#logged").length >= 1) {
+                $("form").find("button").prop("disabled", true)
                 var username = $("#username")
                 var password = $("#password")
                 if (username.length >= 1) {
@@ -56,7 +66,8 @@
                 if (password.length >= 1) {
                     password.prop("disabled", true)
                 }
-                setTimeout(function () {
+
+                setTimeout(function() {
                     location.replace(window['BASE_URL'] + "/admin")
                 }, 3000)
             }

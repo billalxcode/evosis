@@ -8,6 +8,7 @@ class Kandidat extends BaseController
 {
     public function index()
     {
+        $this->loadModel();
         $this->context['title'] = "Kelola Kandidat";
         $this->context['data'] = $this->kandidatModel->findAll();
         $this->renderView('admin/kandidat/view');
@@ -87,5 +88,13 @@ class Kandidat extends BaseController
             $this->session->setFlashdata("errors", $this->validator->getErrors());
             return redirect()->back();
         }
+    }
+
+    public function trash() {
+        $conn = \Config\Database::connect();
+        $table = $conn->table("kandidat");
+        $table->emptyTable();
+        $this->session->setFlashdata('success', 'Berhasil mereset data, data tidak bisa dikembalikan karena sudah dihapus secara permanen.');
+        return redirect()->to('admin/kandidat');
     }
 }

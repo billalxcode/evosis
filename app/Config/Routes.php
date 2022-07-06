@@ -55,8 +55,10 @@ $routes->group("/admin", function ($routes) {
     $routes->group("siswa", ['filter' => 'authadmin'], function ($routes) {
         $routes->get("", "Siswa::index");
         $routes->get("create", "Siswa::create");
+        $routes->get("import", "Siswa::importFile");
         $routes->post("save", "Siswa::save");
         $routes->post("trash", "Siswa::trash");
+        $routes->post("process", "Siswa::process");
     });
 
     $routes->group("kelas", ['filter' => 'authadmin'], function ($routes) {
@@ -66,12 +68,14 @@ $routes->group("/admin", function ($routes) {
 
     $routes->group("suara", ['filter' => 'authadmin'], function ($routes) {
         $routes->get("", "Suara::index");
+        $routes->post("trash", "Suara::trash");
     });
 
     $routes->group("kandidat", ['filter' => 'authadmin'], function ($routes) {
         $routes->get("", "Kandidat::index");
         $routes->get("create", "Kandidat::create");
         $routes->post("save", "Kandidat::save");
+        $routes->post("trash", "Kandidat::trash");
     });
 
     $routes->group("settings", ['filter' => 'authadmin'], function ($routes) {

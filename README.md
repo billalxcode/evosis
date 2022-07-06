@@ -25,9 +25,9 @@ $ php spark serve
 - Kelima, lalu silahkan buka [localhost:8080](http://localhost:8080)
 
 ## Demo
-- Admin
-Username: admin
+- Admin<br/>
+Username: admin<br/>
 Password: 123456
 
-- Siswa
+- Siswa<br/>
 Segera hadir
