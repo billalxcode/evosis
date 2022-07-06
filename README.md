@@ -1,63 +1,33 @@
-# CodeIgniter 4 Application Starter
+# E-VosSis
 
-## What is CodeIgniter?
+```Dukung perkembangan aplikasi karya anak bangsa```
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+## Pendahuluan
+Apa itu E-Vosis? E-Vosis merupakan aplikasi pemilihan ketua osis dengan berbasis digital. Aplikasi ini dikembangkan menggunakan [Codeigniter 4](https://codeigniter.com) dan menggunakan template dari Sneat.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+Kini, pemilihan ketua osis sudah modern. Dengan menggunakan aplikasi ini, pemilihan ketua osis menjadi lebih mudah dan irit biaya. Dengan bermodalkan hosting, sekolah dapat menggunakan aplikasi ini.
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+Aplikasi ini 100% open source dan dapat dikembangkan bersama.
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+## Cara install
+- Pertama anda harus kloning repostory ini ke lokal. Disarankan anda menggunakan server linux agar mempermudah menginstall nya.
+```shell
+$ git clone http://github.com/billalxcode/evosis.git
+$ cd evosis
+```
+- Ketua, pastikan versi php menggunakan versi minimal 7.4 agar dapat mendukung aplikasi ini. Silahkan anda download dahulu php versi terbaru
+- Ketiga, pastikan anda sudah menginstall composer, anda dapat mendownload composer di [getcomposer.com](http://getcomposer.com)
+- Keempat, lalu buka terminal dan ketik perintah berikut
+```shell
+$ composer install
+$ php spark serve
+```
+- Kelima, lalu silahkan buka [localhost:8080](http://localhost:8080)
 
-## Installation & updates
+## Demo
+- Admin
+Username: admin
+Password: 123456
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
-
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
-
-## Setup
-
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
-
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+- Siswa
+Segera hadir
