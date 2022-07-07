@@ -41,4 +41,33 @@ class SiswaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function processImport($data) {
+        $data_batch = [];
+        $idx = 0;
+        foreach ($data as $row) {
+            if (count($row) != 5) {
+                return false;
+            }
+
+            if ($idx != 0) {
+                if ($row[0] == NULL || $row[1] == NULL || $row[2] == NULL || $row[3] == NULL || $row[4] == NULL) {
+                    continue;
+                }
+                $data_real = [
+                    'nisn' => $row[0],
+                    'nama_lengkap' => $row[1],
+                    'kelas' => $row[2],
+                    'jenis_kelamin' => $row[3],
+                    'password' => password_hash($row[4], PASSWORD_BCRYPT),
+                    'aktif' => 1
+                ];
+                array_push($data_batch, $data_real);
+            }
+            $idx++;
+        }
+
+        $this->insertBatch($data_batch);
+        return ['status' => true, 'max_index' => $idx];
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class Siswa extends BaseController
 {
@@ -104,17 +105,35 @@ class Siswa extends BaseController
                     'required' => 'Mohon pilih tipe file.'
                 ]
             ],
-            'file' => [
-                'rules' => 'required|ext_in[file,csv,xls,xlsx,ods]',
-                'error' => [
-                    'required' => 'Mohon pilih file yang akan di import',
-                    'ext_in' => 'File tidak didukung'
+            'userfile' => [
+                'rules' => 'uploaded[userfile]|ext_in[userfile,csv,xls,xlsx,ods]|max_size[userfile,5120]',
+                'errors' => [
+                    'uploaded' => 'Mohon pilih file yang akan di import',
+                    'ext_in' => 'File tidak didukung',
+                    'max_size' => 'Ukuran maksimal file hanya 5Mb'
                 ]
             ]
         ];
 
         if ($this->validate($rules)) {
-            
+            $filetype = $this->request->getPost("filetype");
+            $documents = $this->request->getFile("userfile");
+            if ($filetype == "xlsx") {
+                $reader = new Xlsx();
+                $spreadsheet = $reader->load($documents);
+                $arr = $spreadsheet->getActiveSheet()->toArray();
+                
+                $status = $this->siswaModel->processImport($arr);
+                if ($status == false) {
+                    $this->session->setFlashdata('error', 'Maaf terjadi kesalahan pada saat import data, mohon cek ulang.');
+                } else {
+                    $this->session->setFlashdata('success', 'Berhasil menyimpan ' . $status['max_index'] . ' data');
+                }
+                return redirect()->back();
+            } else {
+                $this->session->setFlashdata('error', 'Maaf ektensi belum di dukung. Silahkan tunggu update selanjutnya');
+                return redirect()->back();
+            }
         } else {
             $this->session->setFlashdata('errors', $this->validator->getErrors());
             return redirect()->back();
