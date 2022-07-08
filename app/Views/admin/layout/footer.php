@@ -9,12 +9,9 @@
             <a href="https://beetwoproject.my.id" target="_blank" class="footer-link fw-bolder">BeeTwoProject</a>
         </div>
         <div>
-            <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+            <a href="https://github.com/billalxcode/evosis" class="footer-link me-4" target="_blank">Github</a>
+            <a href="https://trakteer.id/billalxcode" class="footer-link me-4" target="_blank">Trakteer</a>
 
-            <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
-
-            <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Support</a>
         </div>
     </div>
 </footer>
