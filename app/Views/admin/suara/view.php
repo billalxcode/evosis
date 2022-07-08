@@ -101,7 +101,7 @@
             chart: {
                 height: 300,
                 stacked: true,
-                type: 'line',
+                type: 'area',
                 toolbar: {
                     show: false
                 }
@@ -115,15 +115,11 @@
                     endingShape: 'rounded'
                 }
             },
-            colors: [config.colors.primary, config.colors.info],
             dataLabels: {
                 enabled: false
             },
             stroke: {
-                curve: 'smooth',
-                width: 6,
-                lineCap: 'round',
-                colors: [config.colors.white]
+                curve: 'straight'
             },
             legend: {
                 show: true,
