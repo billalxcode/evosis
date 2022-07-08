@@ -80,6 +80,7 @@ $routes->group("/admin", function ($routes) {
 
     $routes->group("settings", ['filter' => 'authadmin'], function ($routes) {
         $routes->get("", "Settings::index");
+        $routes->post("save", "Settings::save");
     });
 });
 
