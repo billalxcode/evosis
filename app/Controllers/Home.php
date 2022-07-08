@@ -50,7 +50,7 @@ class Home extends BaseController
 
         $this->loadModel();
         if (isset($this->context['siswaData'])) {
-            if ($this->suaraModel->where('siswaid', $this->context['siswaData']['id'])) {
+            if ($this->suaraModel->where('siswaid', $this->context['siswaData']['id'])->first()) {
                 $this->session->setFlashdata("warning", true);
                 return redirect()->back();
             }

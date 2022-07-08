@@ -42,7 +42,10 @@ function convertAngka2Terbilang($angka)
                     <img src="<?= base_url($row['foto']) ?>" alt="" class="card-img-top rounded-circle img-kandidat mx-auto mt-3">
                     <div class="card-header">
                         <h6 class="text-center text-uppercase" style="font-weight: bold;">
-                            CALON KANDIDAT
+                            <?php
+                            $ketuaData_temp = $models['siswaModel']->select('nama_lengkap')->where('id', $row['ketuaid'])->first();
+                            echo $ketuaData_temp['nama_lengkap'];
+                            ?>
                         </h6>
                     </div>
                     <div class="card-body">
@@ -240,6 +243,7 @@ function convertAngka2Terbilang($angka)
             })
         }, timeout)
     }
+
     $(document).ready(function() {
         var alert_danger = $(".alert.alert-danger")
         if (alert_danger.length >= 1) {

@@ -41,4 +41,28 @@ class SuaraModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getLast() {
+        $suaraData = $this->select('siswaid,kandidatid')->findAll();
+        $results = [];
+
+        if (count($suaraData) >= 7) {
+            $result_slice = array_slice($suaraData, (count($suaraData) - 7));
+        } else {
+            $result_slice = $suaraData;
+        }
+
+        foreach ($result_slice as $row) {
+            $siswaModel = new SiswaModel();
+            $kandidatModel = new KandidatModel();
+
+            $siswaData = $siswaModel->select('nama_lengkap')->where('id', $row['siswaid'])->first();
+            $kandidatData = $kandidatModel->select('norut')->where('id', $row['kandidatid'])->first();
+            array_push($results, [
+                'siswa' => $siswaData['nama_lengkap'],
+                'norut' => $kandidatData['norut']
+            ]);
+        }
+        return $results;
+    }
 }

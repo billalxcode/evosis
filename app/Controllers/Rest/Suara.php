@@ -38,12 +38,12 @@ class Suara extends BaseController
     public function getChart() {
         $this->context['error'] = false;
         
-        $suaraData = $this->suaraModel->db->query("SELECT created_at as y_date, DAYNAME(created_at) as day_name, COUNT(id) as count  FROM suara WHERE date(created_at) > (DATE(NOW()) - INTERVAL 7 DAY) AND MONTH(created_at) = '" . date('m') . "' AND YEAR(created_at) = '" . date('Y') . "' GROUP BY DAYNAME(created_at) ORDER BY (y_date) ASC");
+        $suaraData = $this->suaraModel->db->query("SELECT created_at as y_date, HOUR(created_at) as waktu, COUNT(id) as count  FROM suara GROUP BY HOUR(created_at) ORDER BY (y_date) ASC");
         $record = $suaraData->getResult();
         $data = [];
 
         foreach ($record as $row) {
-            $data['label'][] = $row->day_name;
+            $data['label'][] = $row->waktu;
             $data['data'][] = intval($row->count);
         }
         $this->context['data'] = $data;

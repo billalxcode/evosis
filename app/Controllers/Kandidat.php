@@ -15,6 +15,7 @@ class Kandidat extends BaseController
     }
 
     public function create() {
+        helper("form");
         $this->context['title'] = "Tambah Kandidat";
         $this->renderView('admin/kandidat/create');
     }
@@ -71,6 +72,7 @@ class Kandidat extends BaseController
                     $this->session->setFlashdata("error", "NISN wakil tidak ditemukan");
                     return redirect()->back();
                 }
+
                 $data_post = [
                     'ketuaid' => $siswaData['id'],
                     'wakilid' => $siswaData2['id'],

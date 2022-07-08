@@ -9,7 +9,7 @@
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">Donasi</h5>
+                            <h5 class="card-title text-primary text-uppercase">Donasi <i class="fa fa-heart fa-bounce text-danger"></i></h5>
                             <p class="mb-4">
                                 Ayo dukung perkembangan aplikasi ini dengan donasi.
                             </p>
@@ -333,58 +333,21 @@
                 </div>
                 <div class="card-body">
                     <ul class="p-0 m-0">
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <span class="avatar-initial rounded bg-label-primary">
-                                    <div class="avatar-icon bx bxs-user"></div>
-                                </span>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <small class="text-muted d-block mb-1">Siswa 1</small>
-                                    <h6 class="mb-0">Vote Kandidat 1</h6>
+                        <?php foreach ($lastVote as $rowVote) : ?>
+                            <li class="d-flex mb-4 pb-1">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <span class="avatar-initial rounded bg-label-primary">
+                                        <div class="avatar-icon bx bxs-user"></div>
+                                    </span>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <span class="avatar-initial rounded bg-label-primary">
-                                    <div class="avatar-icon bx bxs-user"></div>
-                                </span>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <small class="text-muted d-block mb-1">Siswa 2</small>
-                                    <h6 class="mb-0">Vote Kandidat 3</h6>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <small class="text-muted d-block mb-1"><?= $rowVote['siswa'] ?></small>
+                                        <h6 class="mb-0">Vote Kandidat <?= $rowVote['norut'] ?></h6>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <span class="avatar-initial rounded bg-label-primary">
-                                    <div class="avatar-icon bx bxs-user"></div>
-                                </span>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <small class="text-muted d-block mb-1">Siswa 3</small>
-                                    <h6 class="mb-0">Vote Kandidat 1</h6>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <span class="avatar-initial rounded bg-label-primary">
-                                    <div class="avatar-icon bx bxs-user"></div>
-                                </span>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <small class="text-muted d-block mb-1">Siswa 4</small>
-                                    <h6 class="mb-0">Vote Kandidat 2</h6>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        <?php endforeach ?>
                     </ul>
                 </div>
             </div>
@@ -394,9 +357,36 @@
 </div>
 <!-- / Content -->
 
+<div class="modal fade" id="donasiModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="donasiModalLabel">DUKUNG <i class="fa fa-heart fa-bounce text-danger"></i></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <img src="<?= base_url('assets/img/illustrations/support.png') ?>" height="140" alt="Ilustrasi" class="d-block mx-auto animate__slideInRight" />
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <p class="mb-4">
+                            Ayo dukung perkembangan aplikasi E-VoSis. Dengan dukungan dari kamu, aplikasi ini akan terus berkembang.
+                        </p>
+                        <a href="https://trakteer.id/billalxcode" class="btn btn-sm btn-outline-primary">Trakteer</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Nanti</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function() {
-        var ps = new PerfectScrollbar("#scrollbar")
+        $("#donasiModal").modal("show")
     })
 </script>
 <?= $this->endSection(); ?>

@@ -10,6 +10,7 @@ class Admin extends BaseController
     {
         $this->loadModel();
         $this->context['title'] = "Dashboard E-VoSis";
+        $this->context['lastVote'] = $this->suaraModel->getLast();
         return $this->renderView('admin/dashboard');
     }
 

@@ -8,7 +8,7 @@ class Kelas extends BaseController
 {
     public function getAll()
     {
-        $data = $this->kelasModel->findAll();
+        $data = $this->kelasModel->select('id,name')->findAll();
         $this->context['error'] = false;
         $this->context['data'] = $data;
         return $this->response->setJSON($this->context);
@@ -18,7 +18,7 @@ class Kelas extends BaseController
         $kelasid = $this->request->getPost("kelasid");
         $filter = $this->request->getPost("filter");
         if (isset($kelasid) && isset($filter)) {
-            $kelasData = $this->kelasModel->where("id", $kelasid);
+            $kelasData = $this->kelasModel->where("id", $kelasid)->select('id,name');
             if (strtolower($filter) == "all") {
                 return $this->response->setJSON([
                     'error' => false,

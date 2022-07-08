@@ -3,13 +3,26 @@
 <?= $this->section("content"); ?>
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
+        <div class="col-xxl" id="alert">
+            <?php if (session()->getFlashdata("success")) : ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <span id="message"><?= session()->getFlashdata('success') ?></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+            <?php elseif (session()->getFlashdata("error")) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <span id="message"><?= session()->getFlashdata('error') ?></span>
+                </div>
+            <?php endif ?>
+        </div>
         <div class="col-xxl">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="mb-0">Tambah Kandidat</h5>
-                    <?= (session()->getFlashdata('errors') ? var_dump(session()->getFlashdata('errors')) : '') ?>
                 </div>
                 <form action="<?= base_url('admin/kandidat/save') ?>" method="POST" enctype="multipart/form-data">
+                    <?= csrf_field() ?>
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
                             <img src="<?= base_url('assets/img/avatars/1.png') ?>" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
@@ -128,6 +141,27 @@
     window.Helpers.setAutoUpdate(true);
     window['tables'] = null
     window['prevButton'] = null
+    window['kelasData'] = []
+
+    function matchResult(arr = [], val = "", callback) {
+        var found = false
+        arr.forEach(function(row, idx) {
+            if (row['id'] == val) {
+                found = true
+                callback(row['name'])
+            }
+        })
+        if (found != true) {
+            callback(false)
+        }
+    }
+
+    function getAllKelas() {
+        $.post(window['BASE_URL'] + '/api/kelas/getall', function(response) {
+            const data = response['data']
+            window['kelasData'] = data
+        })
+    }
 
     $("#upload").on("change", function(event) {
         var [files] = event.target.files
@@ -144,6 +178,7 @@
 
     $("#selectSiswa").on("show.bs.modal", function(event) {
         $(document).on("click", ".modal-footer>.btn.btn-primary", function() {
+            $(this).prop("disabled", true)
             $("#selectSiswa").modal("hide")
         })
 
@@ -182,21 +217,14 @@
                 columnDefs: [{
                         targets: 3,
                         render: function(data, type, row) {
-                            window['result'] = 'Tidak diketahui'
-                            $.ajax({
-                                async: false,
-                                url: window['BASE_URL'] + '/api/kelas/search',
-                                method: 'POST',
-                                data: {
-                                    'kelasid': data,
-                                    'filter': 'first'
-                                },
-                                success: function(response) {
-                                    if (response['error'] != true) {
-                                        window['result'] = response['data']['name']
-                                    }
+                            matchResult(window['kelasData'], data, function(result) {
+                                if (result != false) {
+                                    window['result'] = result
+                                } else {
+                                    window['result'] = 'Tidak diketahui'
                                 }
                             })
+
                             return window['result']
                         }
                     },
@@ -212,7 +240,7 @@
     })
 
     $(document).ready(function() {
-
+        getAllKelas()
     })
 </script>
 <?= $this->endSection(); ?>
