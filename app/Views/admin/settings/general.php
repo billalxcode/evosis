@@ -60,6 +60,7 @@
                                             <small class="form-text text-danger"><?= session()->getFlashdata('errors')['kota'] ?></small>
                                         <?php endif ?>
                                     </div>
+
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label" for="kecamatan">kecamatan</label>
                                         <div class="col-sm-10">
@@ -78,15 +79,56 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="nav-profile-panel" role="tabpanel">
-                        <p>
-                            Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice cream. Gummies
-                            halvah
-                            tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream cheesecake fruitcake.
-                        </p>
-                        <p class="mb-0">
-                            Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy
-                            liquorice caramels.
-                        </p>
+                        <form action="<?= base_url('admin/settings/save') ?>" method="post">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="type" value="profile">
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="name">Nama</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Masukan name" aria-label="name" value="<?= $profiles['name'] ?>" />
+                                        </div>
+                                        <?php if (isset(session()->getFlashdata('errors')['name'])) : ?>
+                                            <small class="form-text text-danger"><?= session()->getFlashdata('errors')['name'] ?></small>
+                                        <?php endif ?>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="email">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="email" name="email" placeholder="Masukan email" aria-label="email" value="<?= $profiles['email'] ?>" />
+                                        </div>
+                                        <?php if (isset(session()->getFlashdata('errors')['email'])) : ?>
+                                            <small class="form-text text-danger"><?= session()->getFlashdata('errors')['email'] ?></small>
+                                        <?php endif ?>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="username">Username</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="Masukan username" aria-label="username" value="<?= $profiles['username'] ?>" />
+                                        </div>
+                                        <?php if (isset(session()->getFlashdata('errors')['username'])) : ?>
+                                            <small class="form-text text-danger"><?= session()->getFlashdata('errors')['username'] ?></small>
+                                        <?php endif ?>
+                                    </div>
+                                    <div class="row mb-3 form-password-toggle">
+                                        <div class="d-flex justify-content-between">
+                                            <label class="form-label" for="password">Kata Sandi</label>
+                                        </div>
+                                        <div class="input-group input-group-merge">
+                                            <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                                            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                        </div>
+                                        <?php if (isset(session()->getFlashdata('errors')['password'])) : ?>
+                                            <small class="form-text text-danger"><?= session()->getFlashdata('errors')['password'] ?></small>
+                                        <?php endif ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="nav-calendar-panel" role="tabpanel">
                         <p>

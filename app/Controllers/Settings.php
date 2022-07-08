@@ -11,7 +11,7 @@ class Settings extends BaseController
         helper("form");
         $this->context['title'] = "Kelola Pengaturan";
         $this->context['values'] = $this->settingsModel->first();
-        
+        $this->context['profiles'] = $this->usersModel->where('id', $this->context['usersData']['id'])->first();
         return $this->renderView("admin/settings/general");
     }
 
@@ -43,6 +43,29 @@ class Settings extends BaseController
             }
 
             $this->session->setFlashdata('success', 'Berhasil menyimpan data');
+            return redirect()->back();
+        } elseif ($type == 'profile') {
+            $userData = $this->usersModel->where('id', $this->context['usersData']['id'])->first();
+
+            $name = $this->request->getPost('name');
+            $email = $this->request->getPost("email");
+            $username = $this->request->getPost("username");
+            $password = $this->request->getPost("password");
+
+            $name = isset($name) ? $name : $userData['name'];
+            $email = isset($email) ? $email : $userData['email'];
+            $username = isset($username) ? $username : $userData['username'];
+            $password = isset($password) ? password_hash($password, PASSWORD_BCRYPT) : $userData['password$password'];
+
+            $data_post = [
+                'name' => $name,
+                'email' => $email,
+                'username' => $username,
+                'password' => $password
+            ];
+            
+            $this->usersModel->update($userData['id'], $data_post);
+            $this->session->setFlashdata('success', 'Berhasil menyimpan data.');
             return redirect()->back();
         }
     }
