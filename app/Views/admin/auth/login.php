@@ -23,6 +23,7 @@
                     <?php endif ?>
 
                     <form class="mb-3" action="<?= base_url('admin/auth/verify') ?>" method="POST">
+                        <?= csrf_field() ?>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email Akun" value="<?= old('email') ?>" autofocus />
