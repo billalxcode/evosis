@@ -49,6 +49,11 @@ $routes->group('admin', function (RouteCollection $routes) {
         $routes->get("", "Admin\Auth::login");
         $routes->post("verify", "Admin\Auth::verify");
     });
+
+    $routes->group('siswa', function (RouteCollection $routes) {
+        $routes->get('create', 'Admin\Siswa::create');
+        $routes->post('save', 'Admin\Siswa::save');
+    });
 });
 
 /*

@@ -51,6 +51,7 @@ class UsersModel extends Model
     }
 
     public function verify_user($email, $password) {
+        helper('form');
         $data = $this->select('id,password,role,refresh_token')->where('email', $email)->first();
 
         if ($data) {

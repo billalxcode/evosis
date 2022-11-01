@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+php spark migrate:refresh
+php spark db:seed UsersSeeder

@@ -38,6 +38,17 @@
 
     <script src="<?= base_url() ?>/assets/vendor/js/menu.js"></script>
     <script src="<?= base_url() ?>/assets/js/main.js"></script>
+
+    <script>
+        $(document).on("submit", "form", function () {
+            let button = $(this).find("button")
+            button.html(
+                `<i class="fa fa-spin fa-spinner"></i> Loading...`
+            )
+            button.prop("disabled", true)
+            return true
+        })
+    </script>
 </body>
 
 </html>
