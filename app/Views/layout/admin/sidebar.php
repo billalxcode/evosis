@@ -103,7 +103,7 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">FITUR</span></li>
         <!-- Cards -->
         <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="<?= base_url('admin/security') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Keamanan">Keamanan</div>
             </a>

@@ -8,6 +8,6 @@ class Security extends BaseController
 {
     public function index()
     {
-        //
+        return $this->render('admin/security/manage');
     }
 }

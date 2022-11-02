@@ -16,7 +16,7 @@ class PemilihMigrate extends Migration
                 'null' => false,
                 'unsigned' => true
             ],
-            'kd_users' => [
+            'kd_user' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'null' => false
@@ -31,12 +31,23 @@ class PemilihMigrate extends Migration
                 'constraint' => 5,
                 'null' => false
             ],
-            ''
+            'created_at' => [
+                'type' => 'DATETIME'
+            ],
+            'updated_at' => [
+                'type' => 'DATETIME'
+            ],
+            'deleted_at' => [
+                'type' => 'DATETIME'
+            ]
         ]);
+
+        $this->forge->addKey('id', true);
+        $this->forge->createTable('pemilih');
     }
 
     public function down()
     {
-        //
+        $this->forge->dropTable('pemilih');
     }
 }
