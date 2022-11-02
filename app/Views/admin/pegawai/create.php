@@ -15,15 +15,15 @@ $errors = session()->getFlashdata('errors');
                     <h5 class="mb-0">Tambah Data</h5>
                 </div>
                 <div class="card-body">
-                    <form action="<?= base_url('admin/siswa/save') ?>" method="POST">
+                    <form action="<?= base_url('admin/pegawai/save') ?>" method="POST">
                         <?= csrf_field() ?>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="nis">Nomor Induk Siswa</label>
+                            <label class="col-sm-2 col-form-label" for="nip">Nomor Induk Pegawai</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nis" placeholder="Nomor Induk Siswa Nasional" name="nis" autofocus />
-                                <?php if (isset($errors['nis'])) : ?>
+                                <input type="text" class="form-control" id="nip" placeholder="Nomor Induk Siswa Nasional" name="nip" autofocus />
+                                <?php if (isset($errors['nip'])) : ?>
                                     <div class="form-text text-danger">
-                                        <?= $errors['nis'] ?>
+                                        <?= $errors['nip'] ?>
                                     </div>
                                 <?php endif ?>
                             </div>
@@ -40,14 +40,18 @@ $errors = session()->getFlashdata('errors');
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="classid">Kelas</label>
+                            <label class="col-sm-2 col-form-label" for="type">Tipe</label>
                             <div class="col-sm-10">
-                                <select name="class_id" id="classid" class="form-select">
-                                    <option value="0">X RPL 1</option>
+                                <select name="type" id="type" class="form-select">
+                                    <option value="guru">Guru</option>
+                                    <option value="wakasek">Kepala Sekolah / Wakil</option>
+                                    <option value="pegawai">Kesiswaan / Humas / Kurikulum / Management</option>
+                                    <option value="tu">Tata Usaha</option>
+                                    <option value="lain">Lainnya</option>
                                 </select>
-                                <?php if (isset($errors['class_id'])) : ?>
+                                <?php if (isset($errors['type'])) : ?>
                                     <div class="form-text text-danger">
-                                        <?= $errors['class_id'] ?>
+                                        <?= $errors['type'] ?>
                                     </div>
                                 <?php endif ?>
                             </div>
@@ -62,7 +66,7 @@ $errors = session()->getFlashdata('errors');
                                     </div>
                                 <?php endif ?>
                                 <div class="form-text">
-                                    <span class="text-warning fw-bold text-uppercase">PERINGATAN: </span> Jika password kosong, maka akan terisi secara otomatis: <span class="fw-bold">abcd12345</span>
+                                    <span class="text-warning fw-bold text-uppercase">PERINGATAN: </span> Jika password kosong, maka akan terisi secara otomatis: <span class="fw-bold">1234abcd</span>
                                 </div>
                             </div>
                         </div>

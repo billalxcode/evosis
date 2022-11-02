@@ -42,6 +42,17 @@ $routes->get('/403', function () {
     return view('errors/403');
 });
 
+$routes->group('api', function (RouteCollection $routes) {
+    $routes->group('siswa', function (RouteCollection $routes) {
+        $routes->post('get_all', 'Api\Siswa::get_all');
+    });
+    
+    $routes->group('pegawai', function (RouteCollection $routes) {
+        $routes->post('get_all', 'Api\Pegawai::get_all');
+    });
+    
+});
+
 $routes->group('admin', function (RouteCollection $routes) {
     $routes->get('', 'Admin\Dashboard::index', ['filter' => 'adminfilter']);
 
@@ -50,9 +61,22 @@ $routes->group('admin', function (RouteCollection $routes) {
         $routes->post("verify", "Admin\Auth::verify");
     });
 
-    $routes->group('siswa', function (RouteCollection $routes) {
+    $routes->group('siswa', ['filter' => 'adminfilter'], function (RouteCollection $routes) {
+        $routes->get('', 'Admin\Siswa::index');
         $routes->get('create', 'Admin\Siswa::create');
         $routes->post('save', 'Admin\Siswa::save');
+        $routes->post('trash', 'Admin\Siswa::trash');
+    });
+    
+    $routes->group('pegawai', ['filter' => 'adminfilter'], function (RouteCollection $routes) {
+        $routes->get('', 'Admin\Pegawai::index');
+        $routes->get('create', 'Admin\Pegawai::create');
+        $routes->post('save', 'Admin\Pegawai::save');
+        $routes->post('trash', "Admin\Pegawai::trash");
+    });
+
+    $routes->group('security', ['filter' => 'adminfilter'], function (RouteCollection $routes) {
+        $routes->get('', 'Admin\Security::index');
     });
 });
 

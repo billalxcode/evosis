@@ -42,12 +42,12 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <a href="<?= base_url('admin/siswa') ?>" class="menu-link">
                         <div data-i18n="Kelola Data">Kelola Data</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
+                    <a href="<?= base_url('admin/siswa/manager') ?>" class="menu-link">
                         <div data-i18n="Import/Export Data">Import/Export Data</div>
                     </a>
                 </li>
@@ -60,12 +60,12 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
+                    <a href="<?= base_url('admin/pegawai/create') ?>" class="menu-link">
                         <div data-i18n="Tambah Data">Tambah Data</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <a href="<?= base_url('admin/pegawai') ?>" class="menu-link">
                         <div data-i18n="Kelola Data">Kelola Data</div>
                     </a>
                 </li>

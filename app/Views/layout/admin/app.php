@@ -20,7 +20,7 @@
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/fonts/boxicons.css" />
     <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/libs/fontawesome/css/all.min.css">
-    
+
     <!-- Core CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Page CSS -->
+    <?= $this->renderSection('css'); ?>
 
     <!-- Helpers -->
     <script src="<?= base_url() ?>/assets/vendor/js/helpers.js"></script>
@@ -74,6 +75,9 @@
 
         <!-- Core JS -->
         <!-- build:js assets/vendor/js/core.js -->
+        <script>
+            let BASE_URL = '<?= base_url() ?>'
+        </script>
         <script src="<?= base_url() ?>/assets/vendor/libs/jquery/jquery.js"></script>
         <script src="<?= base_url() ?>/assets/vendor/libs/popper/popper.js"></script>
         <script src="<?= base_url() ?>/assets/vendor/js/bootstrap.js"></script>
@@ -83,13 +87,13 @@
         <!-- endbuild -->
 
         <!-- Vendors JS -->
+        <script src="<?= base_url() ?>/assets/vendor/libs/fontawesome/js/all.min.js"></script>
         <script src="<?= base_url() ?>/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
         <!-- Main JS -->
         <script src="<?= base_url() ?>/assets/js/main.js"></script>
 
         <!-- Page JS -->
-        <script src="<?= base_url() ?>/asets/js/dashboards-analytics.js"></script>
         <?= $this->renderSection('alert-script'); ?>
         <?= $this->renderSection('script'); ?>
 </body>

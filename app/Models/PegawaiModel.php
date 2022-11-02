@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SiswaModel extends Model
+class PegawaiModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'siswa';
+    protected $table            = 'pegawai';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,7 +15,7 @@ class SiswaModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nis', 'fullname', 'class_id', 'token', 'password'
+        'nip', 'fullname', 'jabatan', 'type', 'token', 'password'
     ];
 
     // Dates
@@ -39,10 +39,11 @@ class SiswaModel extends Model
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
-    protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    protected $beforeDelete   = [];
 
-    public function verify_id($id) {
+    public function verify_id($id)
+    {
         $data = $this->select('id')->where('id', $id)->first();
         if ($data) {
             return true;
@@ -50,21 +51,21 @@ class SiswaModel extends Model
             return false;
         }
     }
-    
-    public function create_data($nis, $fullname, $class_id, $password) {
+
+    public function create_data($nip, $fullname, $type, $password)
+    {
         return [
-            'nis' => $nis,
+            'nip' => $nip,
             'fullname' => $fullname,
-            'class_id' => $class_id,
+            'type' => $type,
             'password' => $password
         ];
     }
 
-    public function find_all_siswa() {
-        $data = $this->select('id,nis,fullname,class_id,password,created_at')->orderBy('fullname')->findAll();
-        // Kode untuk mencari kelas berdasarkan id
-
-        // End
+    public function find_all_data()
+    {
+        $data = $this->select('id,nip,fullname,type,password,created_at')->orderBy('fullname')->findAll();
         return $data;
     }
+
 }
