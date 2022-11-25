@@ -79,11 +79,34 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="DATA KELAS">Data Pemilih</div>
+                <div data-i18n="DATA PEMILIH">Data Pemilih</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
+                    <a href="<?= base_url('admin/pemilih/create') ?>" class="menu-link">
+                        <div data-i18n="Tambah Data">Tambah Data</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                        <div data-i18n="Kelola Data">Kelola Data</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-account-settings-connections.html" class="menu-link">
+                        <div data-i18n="Import/Export Data">Import/Export Data</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                <div data-i18n="DATA TPS">Data TPS</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= base_url('admin/tps/create') ?>" class="menu-link">
                         <div data-i18n="Tambah Data">Tambah Data</div>
                     </a>
                 </li>

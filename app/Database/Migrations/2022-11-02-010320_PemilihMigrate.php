@@ -31,6 +31,11 @@ class PemilihMigrate extends Migration
                 'constraint' => 5,
                 'null' => false
             ],
+            'is_permanent' => [
+                'type' => 'ENUM("true", "false")',
+                'default' => 'false',
+                'null' => false
+            ],
             'created_at' => [
                 'type' => 'DATETIME'
             ],

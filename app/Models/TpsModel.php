@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SiswaModel extends Model
+class TpsModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'siswa';
+    protected $table            = 'tps';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,7 +15,7 @@ class SiswaModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nis', 'fullname', 'class_id', 'token', 'password'
+        'kd_tps', 'tps_name', 'tps_loc'
     ];
 
     // Dates
@@ -42,32 +42,19 @@ class SiswaModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function verify_id($id) {
-        $data = $this->select('id')->where('id', $id)->first();
-        if ($data) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public function create_data($nis, $fullname, $class_id, $password) {
+    public function create_data($kd_tps, $tps_name, $tps_loc) {
         return [
-            'nis' => $nis,
-            'fullname' => $fullname,
-            'class_id' => $class_id,
-            'password' => $password
+            'kd_tps' => $kd_tps,
+            'tps_name' => $tps_name,
+            'tps_loc' => $tps_loc
         ];
     }
 
-    public function find_all_siswa() {
-        $data = $this->select('id,nis,fullname,class_id,password,created_at')->orderBy('fullname')->findAll();
-        // Kode untuk mencari kelas berdasarkan id
-
-        // End
+    public function get_all_tps() {
+        $data = $this->select('id,kd_tps,tps_name')->orderBy('kd_tps')->findAll();
         return $data;
     }
-    
+
     public function get_total_id() {
         $selector = $this->select('id')->countAllResults();
         return $selector;

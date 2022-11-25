@@ -75,6 +75,19 @@ $routes->group('admin', function (RouteCollection $routes) {
         $routes->post('trash', "Admin\Pegawai::trash");
     });
 
+    $routes->group('pemilih', ['filter' => 'adminfilter'], function (RouteCollection $routes) {
+        $routes->get("create", "Admin\Pemilih::create");
+        // $routes->get('preview', "Admin\Pemilih::preview");
+        $routes->post("save", "Admin\Pemilih::save");
+        $routes->get("preview", "Api\Pemilih::get_preview");
+    });
+
+    $routes->group('tps', ['filter' => 'adminfilter'], function (RouteCollection $routes) {
+        $routes->get("", "Admin\TPS::index");
+        $routes->get("create", 'Admin\TPS::create');
+        $routes->post('save', 'Admin\TPS::save');
+    });
+
     $routes->group('security', ['filter' => 'adminfilter'], function (RouteCollection $routes) {
         $routes->get('', 'Admin\Security::index');
     });
