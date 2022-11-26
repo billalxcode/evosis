@@ -22,7 +22,7 @@ class SiswaSeeder extends Seeder
         $table = $this->db->table('siswa');
         $faker = Factory::create('id_ID');
         $batch = [];
-        for ($i = 0; $i < 600; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $data = [
                 'nis' => $this->random_nis(),
                 'fullname' => $faker->name(),

@@ -50,7 +50,10 @@ $routes->group('api', function (RouteCollection $routes) {
     $routes->group('pegawai', function (RouteCollection $routes) {
         $routes->post('get_all', 'Api\Pegawai::get_all');
     });
-    
+
+    $routes->group('pemilih', function (RouteCollection $routes) {
+        $routes->post("get_preview", 'Api\Pemilih::get_preview');
+    });
 });
 
 $routes->group('admin', function (RouteCollection $routes) {
@@ -79,7 +82,7 @@ $routes->group('admin', function (RouteCollection $routes) {
         $routes->get("create", "Admin\Pemilih::create");
         // $routes->get('preview', "Admin\Pemilih::preview");
         $routes->post("save", "Admin\Pemilih::save");
-        $routes->get("preview", "Api\Pemilih::get_preview");
+        $routes->get("preview", "Admin\Pemilih::preview");
     });
 
     $routes->group('tps', ['filter' => 'adminfilter'], function (RouteCollection $routes) {

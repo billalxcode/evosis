@@ -103,14 +103,14 @@ class PemilihModel extends Model
         $pemilihData = $this->select('*')->findAll();
         foreach ($pemilihData as $pemilih) {
             $siswaData = $siswaModel->select('nis,fullname')->where('id', $pemilih['kd_user'])->first();
-            $tpsData = $tpsModel->select('kd_tps,tps_name')->where('id', $pemilih['tps_id']);
+            $tpsData = $tpsModel->select('kd_tps,tps_name')->where('id', $pemilih['tps_id'])->first();
 
             $pemilihResults[] = [
-                $siswaData,
-                $tpsData
+                'siswa' => $siswaData,
+                'tps' => $tpsData
             ];
         }
 
-        dd($pemilihResults);
+        return $pemilihResults;
     }
 }

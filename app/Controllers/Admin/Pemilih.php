@@ -29,6 +29,10 @@ class Pemilih extends BaseController
         return $this->render('admin/pemilih/create');
     }
 
+    public function preview() {
+        return $this->render('admin/pemilih/preview');
+    }
+    
     public function save() {
         helper('form');
         $method = $this->request->getMethod();
@@ -41,7 +45,7 @@ class Pemilih extends BaseController
             }
 
             $this->pemilihModel->insertBatch($outputs);
-            echo "Berhasil";
+            return redirect()->to('admin/pemilih/preview');
         } else {
             $this->session->setFlashdata('error', "Akses ditolak");
             return redirect()->back()->withInput();

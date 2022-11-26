@@ -22,9 +22,10 @@ $errors = session()->getFlashdata('errors');
                     <div class="table-responsive">
                         <table class="table hover" id="table">
                             <thead>
-                                <th>NIP</th>
+                                <th>NIS</th>
                                 <th>Nama Lengkap</th>
-                                <th>Tipe</th>
+                                <th>Kode TPS</th>
+                                <th>Nama TPS</th>
                                 <th>Aksi</th>
                             </thead>
                             <tbody>
@@ -32,6 +33,11 @@ $errors = session()->getFlashdata('errors');
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="card-footer">
+                    <form action="<?= base_url('admin/pemilih/save-all') ?>" method="post">
+                        <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan Semua</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -75,34 +81,24 @@ $errors = session()->getFlashdata('errors');
     $(document).ready(function() {
         $("#table").DataTable({
             ajax: {
-                url: BASE_URL + '/api/pegawai/get_all',
+                url: BASE_URL + '/api/pemilih/get_preview',
                 method: 'POST',
                 dataSrc: 'data'
             },
             columns: [{
-                    data: 'nip',
+                    data: 'siswa.nis',
                     render: function(data, type, row) {
                         return `<span class='fw-bold'>${data}</span>`
                     }
                 },
                 {
-                    data: 'fullname'
+                    data: 'siswa.fullname'
                 },
                 {
-                    data: 'type',
-                    render: function(data, type, row) {
-                        if (data == "guru") {
-                            return "Guru"
-                        } else if (data == "wakasek") {
-                            return "Kepala Sekolah / Wakil"
-                        } else if (data == "pegawai") {
-                            return "Kesiswaan / Humas / Kurikulum / Management"
-                        } else if (data == "tu") {
-                            return "Tata Usaha"
-                        } else if (data == "lain") {
-                            return "Lain-nya"
-                        }
-                    }
+                    data: 'tps.kd_tps'
+                },
+                {
+                    data: 'tps.tps_name'
                 },
                 {
                     data: 'id',

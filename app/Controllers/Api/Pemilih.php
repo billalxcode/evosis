@@ -16,6 +16,10 @@ class Pemilih extends BaseController
     public function get_preview()
     {
         $data = $this->pemilihModel->get_data_not_permanent();
-        dd($data);
+        
+        return $this->response->setJSON([
+            'success' => true,
+            'data' => $data
+        ]);
     }
 }
