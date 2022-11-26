@@ -15,7 +15,7 @@ class PemilihModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'kd_user', 'kd_pemilih', 'tps_id'
+        'kd_user', 'kd_pemilih', 'tps_id', 'is_permanent'
     ];
 
     // Dates
@@ -100,7 +100,7 @@ class PemilihModel extends Model
         $tpsModel = new \App\Models\TpsModel();
 
         $pemilihResults = [];
-        $pemilihData = $this->select('*')->findAll();
+        $pemilihData = $this->select('*')->where('is_permanent', 'false')->findAll();
         foreach ($pemilihData as $pemilih) {
             $siswaData = $siswaModel->select('nis,fullname')->where('id', $pemilih['kd_user'])->first();
             $tpsData = $tpsModel->select('kd_tps,tps_name')->where('id', $pemilih['tps_id'])->first();
@@ -112,5 +112,16 @@ class PemilihModel extends Model
         }
 
         return $pemilihResults;
+    }
+
+    public function save_permanent() {
+        $data = $this->where('is_permanent', 'false')->findAll();
+        foreach ($data as $row) {
+            $this->update($row['id'], [
+                'is_permanent' => 'true'
+            ]);
+        }
+
+        return true;
     }
 }

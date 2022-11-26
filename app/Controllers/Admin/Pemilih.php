@@ -32,7 +32,14 @@ class Pemilih extends BaseController
     public function preview() {
         return $this->render('admin/pemilih/preview');
     }
-    
+
+    public function save_permanent() {
+        helper('form');
+        $this->pemilihModel->save_permanent();
+        $this->session->setFlashdata('success', 'Data berhasil disimpan secara permanent');
+        return redirect()->back();
+    }
+
     public function save() {
         helper('form');
         $method = $this->request->getMethod();

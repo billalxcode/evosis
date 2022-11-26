@@ -81,8 +81,9 @@ $routes->group('admin', function (RouteCollection $routes) {
     $routes->group('pemilih', ['filter' => 'adminfilter'], function (RouteCollection $routes) {
         $routes->get("create", "Admin\Pemilih::create");
         // $routes->get('preview', "Admin\Pemilih::preview");
-        $routes->post("save", "Admin\Pemilih::save");
         $routes->get("preview", "Admin\Pemilih::preview");
+        $routes->post("save", "Admin\Pemilih::save");
+        $routes->post("save-all", "Admin\Pemilih::save_permanent");
     });
 
     $routes->group('tps', ['filter' => 'adminfilter'], function (RouteCollection $routes) {

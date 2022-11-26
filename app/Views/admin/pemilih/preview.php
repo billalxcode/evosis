@@ -36,6 +36,7 @@ $errors = session()->getFlashdata('errors');
                 </div>
                 <div class="card-footer">
                     <form action="<?= base_url('admin/pemilih/save-all') ?>" method="post">
+                    <?= csrf_field() ?>
                         <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan Semua</button>
                     </form>
                 </div>
