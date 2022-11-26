@@ -42,6 +42,16 @@ class PemilihModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function verify_id($id)
+    {
+        $data = $this->select('id')->where('id', $id)->first();
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private function rand_kd_pemilih() {
         $alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $num = '1234567890';
@@ -101,6 +111,25 @@ class PemilihModel extends Model
 
         $pemilihResults = [];
         $pemilihData = $this->select('*')->where('is_permanent', 'false')->findAll();
+        foreach ($pemilihData as $pemilih) {
+            $siswaData = $siswaModel->select('nis,fullname')->where('id', $pemilih['kd_user'])->first();
+            $tpsData = $tpsModel->select('kd_tps,tps_name')->where('id', $pemilih['tps_id'])->first();
+
+            $pemilihResults[] = [
+                'siswa' => $siswaData,
+                'tps' => $tpsData
+            ];
+        }
+
+        return $pemilihResults;
+    }
+
+    public function get_data_permanent() {
+        $siswaModel = new \App\Models\SiswaModel();
+        $tpsModel = new \App\Models\TpsModel();
+
+        $pemilihResults = [];
+        $pemilihData = $this->select('*')->where('is_permanent', 'true')->findAll();
         foreach ($pemilihData as $pemilih) {
             $siswaData = $siswaModel->select('nis,fullname')->where('id', $pemilih['kd_user'])->first();
             $tpsData = $tpsModel->select('kd_tps,tps_name')->where('id', $pemilih['tps_id'])->first();

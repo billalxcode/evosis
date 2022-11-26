@@ -52,6 +52,7 @@ $routes->group('api', function (RouteCollection $routes) {
     });
 
     $routes->group('pemilih', function (RouteCollection $routes) {
+        $routes->post("get_all", "Api\Pemilih::get_all");
         $routes->post("get_preview", 'Api\Pemilih::get_preview');
     });
 });
@@ -81,7 +82,9 @@ $routes->group('admin', function (RouteCollection $routes) {
     $routes->group('pemilih', ['filter' => 'adminfilter'], function (RouteCollection $routes) {
         $routes->get("create", "Admin\Pemilih::create");
         // $routes->get('preview', "Admin\Pemilih::preview");
+        $routes->get('manage', 'Admin\Pemilih::manage');
         $routes->get("preview", "Admin\Pemilih::preview");
+        $routes->post('trash', 'Admin\Pemilih::trash');
         $routes->post("save", "Admin\Pemilih::save");
         $routes->post("save-all", "Admin\Pemilih::save_permanent");
     });

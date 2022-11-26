@@ -26,6 +26,7 @@ $errors = session()->getFlashdata('errors');
                                 <th>Nama Lengkap</th>
                                 <th>Kode TPS</th>
                                 <th>Nama TPS</th>
+                                <th>Aksi</th>
                             </thead>
                             <tbody>
 
@@ -33,17 +34,30 @@ $errors = session()->getFlashdata('errors');
                         </table>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <form action="<?= base_url('admin/pemilih/save-all') ?>" method="post">
-                    <?= csrf_field() ?>
-                        <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan Semua</button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="modalConfirmDelete" aria-labelledby="modalConfirmDeleteLabel" tabindex="-1" style="display: none" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalConfirmDeleteLabel">Konfirmasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"><span class="badge bg-warning fw-bold">PERINGATAN: </span> Data akan dihapus secara permanen, anda tidak dapat mengembalikan data yang sudah terhapus. Dengan ini saya sadar ingin menghapus data. Klik 'YA' untuk setuju</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                <form action="<?= base_url('admin/pemilih/trash') ?>" method="post" id="form-delete">
+                    <?= csrf_field() ?>
+                    <input type="hidden" name="id" value="" id='data_id'>
+                    <button type="submit" class="btn btn-secondary">YA</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->endSection() ?>
 
 <?= $this->section('script'); ?>
@@ -62,7 +76,7 @@ $errors = session()->getFlashdata('errors');
     $(document).ready(function() {
         $("#table").DataTable({
             ajax: {
-                url: BASE_URL + '/api/pemilih/get_preview',
+                url: BASE_URL + '/api/pemilih/get_all',
                 method: 'POST',
                 dataSrc: 'data'
             },
@@ -80,6 +94,14 @@ $errors = session()->getFlashdata('errors');
                 },
                 {
                     data: 'tps.tps_name'
+                },
+                {
+                    data: 'id',
+                    render: function(data, type, row) {
+                        let action = ''
+                        action += `<button class="btn btn-danger btn-sm" data-id="${data}" id="btn-delete" tooltip="Hapus Data"><i class="fa fa-trash"></i></button>`
+                        return action
+                    }
                 }
             ]
         })

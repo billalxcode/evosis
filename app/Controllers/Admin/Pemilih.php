@@ -33,6 +33,22 @@ class Pemilih extends BaseController
         return $this->render('admin/pemilih/preview');
     }
 
+    public function manage() {
+        return $this->render('admin/pemilih/manage');
+    }
+
+    public function trash() {
+        $data_id = $this->request->getPost('id');
+        $verifed = $this->pemilihModel->verify_id($data_id);
+        if ($verifed) {
+            $this->pemilihModel->delete($data_id);
+            $this->session->setFlashdata('success', 'Data berhasil dihapus. Data tidak bisa dipulihkan');
+        } else {
+            $this->session->setFlashdata('error', 'Gagal menghapus data, mohon coba lagi.');
+        }
+        return redirect()->back();
+    }
+
     public function save_permanent() {
         helper('form');
         $this->pemilihModel->save_permanent();
